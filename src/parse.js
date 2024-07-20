@@ -1,23 +1,15 @@
 import path from 'path';
-import yaml from 'js-yaml';
-import fs from 'fs';
+import _ from 'lodash';
 
-const getFullPath = (filepath) => path.resolve(process.cwd(), filepath);
-
-const extractFileFormat = (filepath) => path.extname(filepath).slice(1);
-
-const getData = (filepath) => fs.readFileSync(getFullPath(filepath), 'utf-8');
-
-const parsers = {
-    json: JSON.parse,
-    yaml: yaml.load,
-    yml: yaml.load,
+function getData(str) {
+    let data = {};
+    if (str.startsWith("/")) {
+        data = path.resolve(str);
+    } else {
+        const dirName = process.cwd(str);
+        data = path.resolve(dirName, str);
+    };
+    return JSON.parse(fs.readFileSync(data));
 };
 
-const parse = (filepath) => {
-    const data = getData(filepath);
-    const format = extractFileFormat(filepath);
-    return parsers[format](data);
-};
-
-export default parse;
+export default { getData };
