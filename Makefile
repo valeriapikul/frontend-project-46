@@ -4,11 +4,12 @@ install:
 publish:
 	npm publish --dry-run
 
-lint:
-	npx eslint .
 
 gendiff:
 	node bin/gendiff.js
+
+lint:
+	npx eslint .
 
 fix:
 	npx eslint --fix .
