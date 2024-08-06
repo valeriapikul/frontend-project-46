@@ -2,6 +2,7 @@ import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 import fs from 'fs';
 import genDiff from '../src/index.js';
+import makeFormat from '../src/formatters/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -15,5 +16,6 @@ const expectedFile = readFixture('expected_file_json.txt');
 console.log(expectedFile);
 
 test('gendiff test', () => {
-  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toEqual(expectedFile);
+  const result = genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'));
+	expect(result).toEqual(expectedFile);
 });
