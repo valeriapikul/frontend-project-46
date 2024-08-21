@@ -12,8 +12,8 @@ function genDiff(filepath1, filepath2, format) {
   const parseFile1 = parse(dataFile1, extension1);
   const parseFile2 = parse(dataFile2, extension2);
   const dataDiff = getDifferentObject(parseFile1, parseFile2);
-  const result = makeFormat(dataDiff, format);
-  return result;
+  const formatData = makeFormat(dataDiff, format);
+  return formatData;
 }
 
 export default genDiff;
