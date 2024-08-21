@@ -9,7 +9,7 @@ function readFile(filePath) {
 }
 
 function getExtension(filename) {
-  return path.extname(filename);
+  return path.extname(filename).slice(1);
 }
 
 function getDifferentObject(obj1, obj2) {
